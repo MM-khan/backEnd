@@ -24,7 +24,7 @@ regRouter.post("/registers", async(req,res)=>{
                 hashPassword = hash
                 console.log(hashPassword)
                 const user = new register({
-                    firstName: req.body.firstName,
+                    firstname: req.body.firstname,
                     lastname:req.body.lastname,
                     email: req.body.email,
                     password: hashPassword,
@@ -33,12 +33,12 @@ regRouter.post("/registers", async(req,res)=>{
                 })
                 await user.save()
                 const token = jwt.sign({email:user.email,password:user.password,
-                    firstName:user.firstName},'12345')
+                    firstname:user.firstname},'12345')
                 const data = {
                     token: token,
                     message:"user registered succesfully",
                     user:{
-                        firstName:user.firstName,
+                        firstname:user.firstname,
                         lastname:user.lastname,
                         email:user.email,
                         gender:user.gender
@@ -93,8 +93,8 @@ regRouter.post("/login", async(req,res)=>{
             bcrypt.compare(req.body.password, user.password, function (err, result) {
                 console.log(result)
                 if (result) {
-                    const token = jwt.sign({email:user.email,password:user.password,
-                    firstName:user.firstName},'12345')
+                    const token = jwt.sign({email:user.email,password:user.password
+                    },'12345')
                     const data = {
                         token: token,
                         message:"user login successful"

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 
  const regSchema = mongoose.Schema({
-     firstName :{
+     firstname :{
          type : String,
          require:true
      },
